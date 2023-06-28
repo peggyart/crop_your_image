@@ -343,6 +343,7 @@ class _CropEditorState extends State<_CropEditor> {
         });
         widget.onStatusChanged?.call(CropStatus.ready);
         widget.controller?.signalInitialImageLoaded();
+        print('FIRIING SIGNAL: ${DateTime.now()}');
       }
     });
     super.didChangeDependencies();
