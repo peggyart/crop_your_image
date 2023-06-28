@@ -342,6 +342,7 @@ class _CropEditorState extends State<_CropEditor> {
           _lastComputed = null;
         });
         widget.onStatusChanged?.call(CropStatus.ready);
+        widget.controller?.signalInitialImageLoaded();
       }
     });
     super.didChangeDependencies();

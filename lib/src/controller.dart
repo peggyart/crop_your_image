@@ -31,6 +31,23 @@ class CropController {
 
   /// change [Rect] of cropping area based on [Rect] of original imgage.
   set area(Rect value) => _delegate.onChangeArea(value);
+
+  /// NOTE(peggy): this is used to signal the external parties that the
+  ///  initial image load is completed. This is done since other widgets
+  ///  in the widget tree depends on the loading status of the Crop widget.
+  bool _initialImageLoaded = false;
+  final _onInitialImageFinishedLoading = Completer<void>();
+  Completer<void> get onInitialImageFinishedLoading =>
+      _onInitialImageFinishedLoading;
+
+  void signalInitialImageLoaded() {
+    if (_initialImageLoaded) {
+      return;
+    }
+
+    _initialImageLoaded = true;
+    _onInitialImageFinishedLoading.complete();
+  }
 }
 
 /// Delegate of actions from [CropController]
