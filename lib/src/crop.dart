@@ -367,6 +367,10 @@ class _CropEditorState extends State<_CropEditor> {
 
   /// reset [Rect] of cropping area with current state
   void _resetCroppingArea() {
+    if (!context.mounted) {
+      return;
+    }
+
     final screenSize = MediaQuery.of(context).size;
 
     final imageRatio = _targetImage!.width / _targetImage!.height;
